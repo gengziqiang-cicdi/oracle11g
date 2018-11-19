@@ -23,7 +23,7 @@ FROM 172.16.11.70/base/centos:7.4.1708
 
 # Environment variables required for this build (do NOT change)
 # -------------------------------------------------------------
-RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && yum install -y telnet lsof wget ftp fontconfig ttmkfdir && \
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && yum install -y telnet lsof wget ftp && \
     yum clean all && rm -rf /var/cache/yum
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
