@@ -19,10 +19,17 @@
 #
 # Pull base image
 # ---------------
-FROM centos
+FROM 172.16.11.70/base/centos:7.4.1708
 
 # Environment variables required for this build (do NOT change)
 # -------------------------------------------------------------
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && yum install -y telnet lsof wget ftp fontconfig ttmkfdir && \
+    yum clean all && rm -rf /var/cache/yum &&
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+ENV LC_ALL zh_CN.utf8
+ENV LANG zh_CN.utf8
+
 ENV ORACLE_BASE=/opt/oracle \
     ORACLE_HOME=/opt/oracle/product/11.2.0 \
     INSTALL_FILE_1="p13390677_112040_Linux-x86-64_1of7.zip" \
