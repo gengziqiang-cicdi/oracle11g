@@ -66,7 +66,7 @@ mkdir -p /opt/oracle/oradata/$ORACLE_SID/archivelog
 
 # Start LISTENER and run DBCA
 lsnrctl start &&
-dbca -initParams java_jit_enabled=false -silent -createDatabase -responseFile $ORACLE_BASE/dbca.rsp -redoLogFileSize 1024 -datafileDestination /opt/oracle/oradata ||
+dbca -initParams java_jit_enabled=false -silent -createDatabase -responseFile $ORACLE_BASE/dbca.rsp -redoLogFileSize 512 -datafileDestination /opt/oracle/oradata ||
  cat /opt/oracle/cfgtoollogs/dbca/$ORACLE_SID/$ORACLE_SID.log ||
  cat /opt/oracle/cfgtoollogs/dbca/$ORACLE_SID.log
 
@@ -98,7 +98,7 @@ sqlplus / as sysdba << EOF
      v_fileid number;
      v_filename varchar2(100);
    begin
-   execute immediate 'alter database tempfile 1 resize 30G';
+   execute immediate 'alter database tempfile 1 resize 4G';
    OPEN c_cursor;
    FETCH c_cursor INTO v_filename, v_fileid;
    WHILE c_cursor%FOUND LOOP
@@ -109,7 +109,7 @@ sqlplus / as sysdba << EOF
      execute immediate 'alter database datafile ' || v_fileid || ' resize 1G';
      end if;
      if instr(v_filename,'undo') <> 0 then
-     execute immediate 'alter database datafile ' || v_fileid || ' resize 10G';
+     execute immediate 'alter database datafile ' || v_fileid || ' resize 4G';
      end if;
      FETCH c_cursor INTO v_filename, v_fileid;
    END LOOP;
