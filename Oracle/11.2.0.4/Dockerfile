@@ -23,7 +23,7 @@ FROM 172.16.11.70/base/centos:7.4.1708
 
 # Environment variables required for this build (do NOT change)
 # -------------------------------------------------------------
-RUN yum -y install kde-l10n-Chinese && yum -y reinstall glibc-common && \
+RUN yum -y install kde-l10n-Chinese && yum -y install glibc-common && \
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && yum install -y telnet lsof wget ftp && \
     yum clean all && rm -rf /var/cache/yum
 ENV TZ=Asia/Shanghai
