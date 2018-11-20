@@ -6,13 +6,13 @@ Oracle官方在Github上提供了一些Oracle Docker image，但并未提供11g 
 - 指定SGA及PGA大小(官方image指定的是固定的内存大小，如需修改，需要在数据库创建之后手动调整，所以，在此我们做了相应的自动化)
 - 指定数据库角色，包括primary及standby(官方镜像只能创建primary数据库，我们同时实现了创建standby数据库的逻辑，但该部分逻辑依赖沃趣科技QCFS云存储提供的快照功能，目前只能在QFusion 3.0 RDS数据库云平台中实现)
 - 包含对主库实例状态、备库实例状态和MRP恢复状态的健康检查
-- ONLINE REDO LOG自动调整为1G大小
+- ONLINE REDO LOG自动调整为512M大小
 - 设置用户名密码永不过期(虽不安全，但在绝大部分企业级用户均采用此实践)
 - 关闭Concurrent Statistics Gathering功能
-- TEMP表空间设置为30G大小
+- TEMP表空间设置为4G大小
 - SYSTEM表空间设置为1G大小
 - SYSAUX表空间设置为1G大小
-- UNDO表空间设置为10G大小
+- UNDO表空间设置为4G大小
 
 
 ### Image构建

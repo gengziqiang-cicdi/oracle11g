@@ -84,7 +84,7 @@ sqlplus / as sysdba << EOF
    alter system set db_recovery_file_dest='' scope=spfile;
    alter system reset db_recovery_file_dest_size scope=spfile;
    alter system set sga_target=$SGA_SIZE scope=spfile;
-   alter system set sga_max_size=$PGA_SIZE scope=spfile;
+   alter system set sga_max_size=$SGA_SIZE scope=spfile;
    alter system set pga_aggregate_target=$PGA_SIZE scope=spfile;
    alter system set audit_trail=none scope=spfile;
    alter system set audit_sys_operations=false scope=spfile;
